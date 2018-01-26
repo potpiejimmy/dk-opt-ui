@@ -1,19 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <i class="material-icons">security</i> 
-    <span style="margin-left:0.5em;">OPT Web Configuration</span>
+    <i class="material-icons" style="margin-right:0.5em;">security</i> 
+    <span class="apptitle">OPT – Web Control</span>
     <span style="flex: 1 1 auto;"></span>
     
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-card>
-  <mat-form-field hintLabel="Enter 3DES key">
-      <input matInput #input maxlength="64" placeholder="K_INIT_T">
-      <mat-hint align="end">{{input.value?.length || 0}}/64</mat-hint>
-  </mat-form-field>
-  <p>
-    <button mat-raised-button color="primary">Initialisiere HSM</button>
-  </p>
+  <mat-card-content>
+    <mat-form-field hintLabel="Enter 3DES key">
+        <input matInput #input maxlength="64" placeholder="K_INIT_T">
+        <mat-hint align="end">{{input.value?.length || 0}}/64</mat-hint>
+    </mat-form-field>
+    <p>
+      <button mat-raised-button color="primary">Initialisiere HSM</button>
+    </p>
+  </mat-card-content>
 </mat-card>
