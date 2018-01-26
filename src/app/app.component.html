@@ -9,9 +9,9 @@
 </mat-toolbar>
 
 <mat-card>
-  <mat-card-content>
-    <mat-form-field hintLabel="Enter 3DES key">
-        <input matInput #input maxlength="64" placeholder="K_INIT_T">
+  <mat-card-content fxFlexFill fxLayout="column">
+    <mat-form-field hintLabel="Format: YYYYMMDDHHMMSS">
+        <input matInput #input maxlength="64" placeholder="Onlinezeitpunkt" [(ngModel)]="ozp">
         <mat-hint align="end">{{input.value?.length || 0}}/64</mat-hint>
     </mat-form-field>
     <p>
