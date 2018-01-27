@@ -25,7 +25,7 @@ export class AppComponent {
 
   setOZP() {
     this.hsm.writeValue('ozp', this.hsmData.ozp).then(() => {
-      this.snackBar.open("OZP gespeichert.");
+      this.snackBar.open("Der Onlinezeitpunkt wurde gesetzt.", null, {duration:1000, verticalPosition: 'top', panelClass: 'yellow-bg'});
     });
   }
 }

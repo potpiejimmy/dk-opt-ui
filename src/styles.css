@@ -13,3 +13,8 @@ body {
 .margin1 {
     margin: 1em;
 }
+
+.yellow-bg {
+    color: black;
+    background-color: yellow;
+}

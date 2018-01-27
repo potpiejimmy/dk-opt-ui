@@ -25,7 +25,7 @@ export class HsmService {
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', JSON.stringify(error)); // XXX for debugging purposes
         if (!error.status) error.message = "Sorry, " + environment.API_URL + " cannot be reached.";
-        this.snackBar.open(error.message || JSON.stringify(error));
+        this.snackBar.open(error.message || JSON.stringify(error), null, {verticalPosition: 'top', panelClass: 'yellow-bg'});
         return Promise.reject(error.message || error);
     }
 }
