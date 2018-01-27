@@ -10,12 +10,16 @@ export class HsmService {
         private snackBar: MatSnackBar) {
     }
 
+    readAll(): Promise<any> {
+        return this.http.get(environment.API_URL+"/hsm").toPromise().catch(err => this.handleError(err));
+    }
+
     readValue(id: string): Promise<any> {
         return this.http.get(environment.API_URL+"/hsm/" + id).toPromise().catch(err => this.handleError(err));
     }
 
     writeValue(id: string, val: string): Promise<any> {
-        return this.http.put(environment.API_URL+"/hsm/" + id, val).toPromise();
+        return this.http.put(environment.API_URL+"/hsm/" + id, {value:val}).toPromise().catch(err => this.handleError(err));
     }
 
     private handleError(error: any): Promise<any> {

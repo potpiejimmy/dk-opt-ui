@@ -8,14 +8,32 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-card>
-  <mat-card-content fxFlexFill fxLayout="column">
-    <mat-form-field hintLabel="Format: YYYYMMDDHHMMSS">
-        <input matInput #input maxlength="64" placeholder="Onlinezeitpunkt" [(ngModel)]="ozp">
-        <mat-hint align="end">{{input.value?.length || 0}}/64</mat-hint>
-    </mat-form-field>
-    <p>
-      <button mat-raised-button color="primary">Initialisiere HSM</button>
-    </p>
-  </mat-card-content>
-</mat-card>
+<div class="margin1">
+  <div fxFlexFill fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em">
+
+    <mat-card fxFlex="50">
+      <mat-card-title>HSM</mat-card-title>
+      <mat-card-subtitle>Eigenschaften des HSM konfigurieren</mat-card-subtitle>
+      <mat-card-content fxFlexFill fxLayout="column">
+        <mat-form-field>
+            <input matInput #input maxlength="14" placeholder="ZKA-Nummer" [(ngModel)]="hsmData.zkano" disabled="true">
+        </mat-form-field>
+        <mat-form-field hintLabel="Format: YYYYMMDDHHMMSS">
+            <input matInput #input maxlength="14" placeholder="Onlinezeitpunkt" [(ngModel)]="hsmData.ozp">
+            <mat-hint align="end">{{input.value?.length || 0}}/14</mat-hint>
+        </mat-form-field>
+        <p>
+          <button mat-raised-button color="primary" (click)="setOZP()">OZP setzen</button>
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card fxFlex="50">
+      <mat-card-title>OPT</mat-card-title>
+      <mat-card-subtitle>Initialisierung und Personalisierung</mat-card-subtitle>
+      <mat-card-content fxFlexFill fxLayout="column">
+      </mat-card-content>
+    </mat-card>
+    
+  </div>
+</div>

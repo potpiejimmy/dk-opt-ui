@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HsmService } from './services/hsm.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,23 @@ import { HsmService } from './services/hsm.service';
 })
 export class AppComponent {
 
-  constructor(private hsm: HsmService) {}
+  constructor(
+    private hsm: HsmService,
+    private snackBar: MatSnackBar) {
+  }
 
-  ozp: string;
+  hsmData: any = {};
 
   ngOnInit() {
-    this.hsm.readValue('ozp').then(ozp => {
-      console.log(ozp);
-      this.ozp = ozp;
+    this.hsm.readAll().then(data => {
+      console.log(data);
+      this.hsmData = data;
+    });
+  }
+
+  setOZP() {
+    this.hsm.writeValue('ozp', this.hsmData.ozp).then(() => {
+      this.snackBar.open("OZP gespeichert.");
     });
   }
 }

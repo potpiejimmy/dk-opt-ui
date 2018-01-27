@@ -9,3 +9,7 @@ body {
     font-size: 0.9em;
     font-weight: bold;
 }
+
+.margin1 {
+    margin: 1em;
+}
