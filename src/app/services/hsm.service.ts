@@ -14,14 +14,14 @@ export class HsmService extends BaseService {
     }
 
     readAll(): Promise<any> {
-        return this.get(environment.API_URL+"/hsm");
+        return this.get(environment.API_URL+"/hsm/admin");
     }
 
     readValue(id: string): Promise<any> {
-        return this.get(environment.API_URL+"/hsm/" + id);
+        return this.get(environment.API_URL+"/hsm/admin/" + id);
     }
 
     writeValue(id: string, val: string): Promise<any> {
-        return this.put(environment.API_URL+"/hsm/" + id, {value:val});
+        return this.put(environment.API_URL+"/hsm/admin/" + id, {value:val});
     }
 }

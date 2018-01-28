@@ -25,12 +25,20 @@ export class AppComponent {
     });
   }
 
+  save() {
+    this.hsm.writeValue('terminalid', this.hsmData.terminalid).then(() => {
+      this.hsm.writeValue('betreiberblz', this.hsmData.betreiberblz).then(() => {
+        this.showSnack("Die Werte wurden gespeichert.");
+      })
+    });
+  }
+
   setOZP() {
     this.hsm.writeValue('ozp', this.hsmData.ozp).then(() => this.showSnack("Der Onlinezeitpunkt wurde gesetzt."));
   }
 
   optInit() {
-    this.opt.init().then(() => this.showSnack("Okay."));
+    this.opt.init().then(() => this.showSnack("Die OPT-Initialisierung wurde erfolgreich durchgeführt."));
   }
 
   showSnack(text: string) {

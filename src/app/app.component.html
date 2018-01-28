@@ -11,18 +11,34 @@
   <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1em" fxLayoutAlign="left top">
 
     <mat-card fxFlex="50" fxFlex.lg="30">
-      <mat-card-title>HSM</mat-card-title>
-      <mat-card-subtitle>Eigenschaften des HSM konfigurieren</mat-card-subtitle>
+      <mat-card-title>HSM / Terminal</mat-card-title>
+      <mat-card-subtitle>Eigenschaften des HSM und des Terminals</mat-card-subtitle>
       <mat-card-content fxLayout="column">
         <mat-form-field>
-            <input matInput #input maxlength="14" placeholder="ZKA-Nummer" [(ngModel)]="hsmData.zkano" disabled="true">
+            <input matInput placeholder="HSM-Status" [(ngModel)]="hsmData.status" disabled="true">
         </mat-form-field>
-        <mat-form-field hintLabel="Format: YYYYMMDDHHMMSS">
-            <input matInput #input maxlength="14" placeholder="Onlinezeitpunkt" [(ngModel)]="hsmData.ozp">
-            <mat-hint align="end">{{input.value?.length || 0}}/14</mat-hint>
+        <mat-form-field>
+            <input matInput placeholder="ZKA-Nummer" [(ngModel)]="hsmData.zkano" disabled="true">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput #inptid maxlength="8" placeholder="Terminal-ID" [(ngModel)]="hsmData.terminalid">
+            <mat-hint align="end">{{inptid.value?.length || 0}}/8</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput #inpblz maxlength="8" placeholder="Betreiber-BLZ" [(ngModel)]="hsmData.betreiberblz">
+            <mat-hint align="end">{{inpblz.value?.length || 0}}/8</mat-hint>
         </mat-form-field>
         <p>
-          <button mat-raised-button color="primary" (click)="setOZP()">OZP setzen</button>
+          <button mat-raised-button color="primary" (click)="save()">Speichern</button>
+        </p>
+        <mat-divider [inset]="true"></mat-divider>
+        <p></p>
+        <mat-form-field hintLabel="Format: JJJJMMTTHHMMSS">
+            <input matInput #inpozp maxlength="14" placeholder="Onlinezeitpunkt" [(ngModel)]="hsmData.ozp">
+            <mat-hint align="end">{{inpozp.value?.length || 0}}/14</mat-hint>
+        </mat-form-field>
+        <p>
+          <button mat-raised-button color="primary" (click)="setOZP()">Onlinezeitpunkt setzen</button>
         </p>
       </mat-card-content>
     </mat-card>
@@ -32,7 +48,10 @@
       <mat-card-subtitle>Initialisierung und Personalisierung</mat-card-subtitle>
       <mat-card-content fxLayout="column">
         <p>
-          <button mat-raised-button color="primary" (click)="optInit()">Initialisierungsanfrage senden</button>
+          <button mat-raised-button color="primary" (click)="optInit()">OPT-Initialisierung durchführen</button>
+        </p>
+        <p>
+          <button mat-raised-button color="primary" (click)="optInit()" disabled="true">OPT-Personalisierung durchführen</button>
         </p>
       </mat-card-content>
     </mat-card>
