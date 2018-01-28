@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HsmService } from './services/hsm.service';
+import { OptService } from './services/opt.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -11,6 +12,7 @@ export class AppComponent {
 
   constructor(
     private hsm: HsmService,
+    private opt: OptService,
     private snackBar: MatSnackBar) {
   }
 
@@ -24,8 +26,14 @@ export class AppComponent {
   }
 
   setOZP() {
-    this.hsm.writeValue('ozp', this.hsmData.ozp).then(() => {
-      this.snackBar.open("Der Onlinezeitpunkt wurde gesetzt.", null, {duration:1000, verticalPosition: 'top', panelClass: 'yellow-bg'});
-    });
+    this.hsm.writeValue('ozp', this.hsmData.ozp).then(() => this.showSnack("Der Onlinezeitpunkt wurde gesetzt."));
+  }
+
+  optInit() {
+    this.opt.init().then(() => this.showSnack("Okay."));
+  }
+
+  showSnack(text: string) {
+    this.snackBar.open(text, null, {duration:1000, verticalPosition: 'top', panelClass: 'yellow-bg'});
   }
 }

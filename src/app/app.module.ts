@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { HsmService } from './services/hsm.service';
+import { OptService } from './services/opt.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HsmService } from './services/hsm.service';
     MatButtonModule
   ],
   providers: [
-    HsmService
+    HsmService,
+    OptService
   ],
   bootstrap: [AppComponent]
 })

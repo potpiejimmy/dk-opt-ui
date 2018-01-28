@@ -4,7 +4,6 @@
     <i class="material-icons" style="margin-right:0.5em;">security</i> 
     <span class="apptitle">OPT – Web Control</span>
     <span style="flex: 1 1 auto;"></span>
-    
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -32,6 +31,9 @@
       <mat-card-title>OPT</mat-card-title>
       <mat-card-subtitle>Initialisierung und Personalisierung</mat-card-subtitle>
       <mat-card-content fxLayout="column">
+        <p>
+          <button mat-raised-button color="primary" (click)="optInit()">Initialisierungsanfrage senden</button>
+        </p>
       </mat-card-content>
     </mat-card>
     
