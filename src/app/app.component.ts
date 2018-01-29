@@ -17,6 +17,7 @@ export class AppComponent {
   }
 
   hsmData: any = {};
+  processing: boolean = false;
 
   ngOnInit() {
     this.hsm.readAll().then(data => {
@@ -25,20 +26,34 @@ export class AppComponent {
     });
   }
 
-  save() {
-    this.hsm.writeValue('terminalid', this.hsmData.terminalid).then(() => {
-      this.hsm.writeValue('betreiberblz', this.hsmData.betreiberblz).then(() => {
+  saveValue(id: string): Promise<any> {
+    return this.hsm.writeValue(id, this.hsmData[id]);
+  }
+
+  saveTerminalProperties() {
+    this.saveValue('terminalid').then(() =>
+    this.saveValue('betreiberblz').then(() => {
         this.showSnack("Die Werte wurden gespeichert.");
-      })
-    });
+    }));
+  }
+
+  savePS() {
+    this.saveValue('ps_host').then(() =>
+    this.saveValue('ps_port').then(() => {
+        this.showSnack("Die Werte wurden gespeichert.");
+    }));
   }
 
   setOZP() {
-    this.hsm.writeValue('ozp', this.hsmData.ozp).then(() => this.showSnack("Der Onlinezeitpunkt wurde gesetzt."));
+    this.saveValue('ozp').then(() => this.showSnack("Der Onlinezeitpunkt wurde gesetzt."));
   }
 
   optInit() {
-    this.opt.init().then(() => this.showSnack("Die OPT-Initialisierung wurde erfolgreich durchgeführt."));
+    this.processing = true;
+    this.opt.init().then(result => {
+      this.showSnack("Ergebnis: " + result.status);
+      this.processing = false;
+    });
   }
 
   showSnack(text: string) {

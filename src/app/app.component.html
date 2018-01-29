@@ -29,7 +29,7 @@
             <mat-hint align="end">{{inpblz.value?.length || 0}}/8</mat-hint>
         </mat-form-field>
         <p>
-          <button mat-raised-button color="primary" (click)="save()">Speichern</button>
+          <button mat-raised-button color="primary" (click)="saveTerminalProperties()">Speichern</button>
         </p>
         <mat-divider [inset]="true"></mat-divider>
         <p></p>
@@ -45,10 +45,24 @@
 
     <mat-card fxFlex="50" fxFlex.lg="30">
       <mat-card-title>OPT</mat-card-title>
-      <mat-card-subtitle>Initialisierung und Personalisierung</mat-card-subtitle>
+      <mat-card-subtitle>Personalisierungsstelle (PS)</mat-card-subtitle>
       <mat-card-content fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="left top">
+          <mat-form-field fxFlex="75">
+              <input matInput #inphost placeholder="IP / Host" [(ngModel)]="hsmData.ps_host">
+          </mat-form-field>
+          <mat-form-field fxFlex="25">
+              <input matInput #inpport placeholder="Port" [(ngModel)]="hsmData.ps_port">
+          </mat-form-field>
+        </div>
         <p>
-          <button mat-raised-button color="primary" (click)="optInit()">OPT-Initialisierung durchführen</button>
+          <button mat-raised-button color="primary" (click)="savePS()">Speichern</button>
+        </p>
+        <mat-divider [inset]="true"></mat-divider>
+        <p></p>
+        <mat-card-subtitle>Initialisierung / Personalisierung</mat-card-subtitle>
+        <p>
+          <button mat-raised-button color="primary" (click)="optInit()" [disabled]="processing">OPT-Initialisierung durchführen</button>
         </p>
         <p>
           <button mat-raised-button color="primary" (click)="optInit()" disabled="true">OPT-Personalisierung durchführen</button>
