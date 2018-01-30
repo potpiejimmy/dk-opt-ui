@@ -18,7 +18,16 @@
             <input matInput placeholder="HSM-Status" [(ngModel)]="hsmData.status" disabled="true">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="ZKA-Nummer" [(ngModel)]="hsmData.zkano" disabled="true">
+            <input matInput #inphid placeholder="Hersteller-ID" [(ngModel)]="hsmData.herstellerid" disabled="true">
+            <mat-hint align="end">{{inphid.value?.length || 0}}/12</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput #inphserial placeholder="Hersteller-Seriennummer" [(ngModel)]="hsmData.herstellerserialno" disabled="true">
+            <mat-hint align="end">{{inphserial.value?.length || 0}}/20</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput #inphzkano placeholder="ZKA-Nummer" [(ngModel)]="hsmData.zkano" disabled="true">
+            <mat-hint align="end">{{inphzkano.value?.length || 0}}/32</mat-hint>
         </mat-form-field>
         <mat-form-field>
             <input matInput #inptid maxlength="8" placeholder="Terminal-ID" [(ngModel)]="hsmData.terminalid">
@@ -60,12 +69,15 @@
         </p>
         <mat-divider [inset]="true"></mat-divider>
         <p></p>
-        <mat-card-subtitle>Initialisierung / Personalisierung</mat-card-subtitle>
+        <mat-card-subtitle>(Vor)-Initialisierung / Personalisierung</mat-card-subtitle>
         <p>
-          <button mat-raised-button color="primary" (click)="optInit()" [disabled]="processing">OPT-Initialisierung durchführen</button>
+          <button mat-raised-button color="primary" (click)="optPreInit()" [disabled]="processing">Vor-Initialisierung</button>
         </p>
         <p>
-          <button mat-raised-button color="primary" (click)="optInit()" disabled="true">OPT-Personalisierung durchführen</button>
+          <button mat-raised-button color="primary" (click)="optInit()" [disabled]="processing">Initialisierung</button>
+        </p>
+        <p>
+          <button mat-raised-button color="primary" (click)="optPers()" disabled="true">Personalisierung</button>
         </p>
       </mat-card-content>
     </mat-card>

@@ -49,8 +49,20 @@ export class AppComponent {
   }
 
   optInit() {
+    this.optProcess(this.opt.init());
+  }
+
+  optPreInit() {
+    this.optProcess(this.opt.preinit());
+  }
+
+  optPers() {
+    //this.optProcess(this.opt.init());
+  }
+
+  optProcess(optResult: Promise<any>) {
     this.processing = true;
-    this.opt.init().then(result => {
+    optResult.then(result => {
       this.showSnack("Ergebnis: " + result.status);
       this.processing = false;
     });
