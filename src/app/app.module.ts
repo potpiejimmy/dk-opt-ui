@@ -19,9 +19,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HsmService } from './services/hsm.service';
 import { OptService } from './services/opt.service';
 
+import { KeyPresenceComponent } from './components/keypresence.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    KeyPresenceComponent
   ],
   imports: [
     BrowserModule,

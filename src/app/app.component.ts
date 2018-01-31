@@ -17,8 +17,10 @@ export class AppComponent {
     private opt: OptService,
     private snackBar: MatSnackBar) {
   }
+  
+  adminData: any = {};
+  keystoreData: any = {};
 
-  hsmData: any = {};
   processing: boolean = false;
 
   ngOnInit() {
@@ -26,17 +28,19 @@ export class AppComponent {
   }
 
   updateAll() {
-    this.hsm.readAll().then(data => {
-      console.log(data);
-      this.hsmData = data;
-      this.hsmData.herstellerid = Utils.ebcdicToAscii(data.herstellerid);
-      this.hsmData.herstellerserialno = Utils.ebcdicToAscii(data.herstellerserialno);
-      this.hsmData.zkano = Utils.ebcdicToAscii(data.zkano);
+    this.hsm.readAdminAll().then(data => {
+      this.adminData = data;
+      this.adminData.herstellerid = Utils.ebcdicToAscii(data.herstellerid);
+      this.adminData.herstellerserialno = Utils.ebcdicToAscii(data.herstellerserialno);
+      this.adminData.zkano = Utils.ebcdicToAscii(data.zkano);
+      return this.hsm.readKeystoreProperties();
+    }).then(data => {
+      this.keystoreData = data;
     });
   }
 
   saveValue(id: string): Promise<any> {
-    return this.hsm.writeValue(id, this.hsmData[id]);
+    return this.hsm.writeAdminValue(id, this.adminData[id]);
   }
 
   saveTerminalProperties() {

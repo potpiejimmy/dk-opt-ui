@@ -18,3 +18,13 @@ body {
     color: black;
     background-color: yellow;
 }
+
+.boldgreen {
+    font-weight: bold;
+    color: green;
+}
+
+.boldred {
+    font-weight: bold;
+    color: red;
+}
