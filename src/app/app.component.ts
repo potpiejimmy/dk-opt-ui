@@ -22,6 +22,10 @@ export class AppComponent {
   processing: boolean = false;
 
   ngOnInit() {
+    this.updateAll();
+  }
+
+  updateAll() {
     this.hsm.readAll().then(data => {
       console.log(data);
       this.hsmData = data;
@@ -68,12 +72,13 @@ export class AppComponent {
   optProcess(optResult: Promise<any>) {
     this.processing = true;
     optResult.then(result => {
-      this.showSnack("Ergebnis: " + result.status);
+      this.showSnack(result.status);
       this.processing = false;
+      this.updateAll();
     });
   }
 
   showSnack(text: string) {
-    this.snackBar.open(text, null, {duration:1000, verticalPosition: 'top', panelClass: 'yellow-bg'});
+    this.snackBar.open(text, null, {duration:5000, verticalPosition: 'top', panelClass: 'yellow-bg'});
   }
 }
