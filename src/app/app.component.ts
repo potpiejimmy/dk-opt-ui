@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HsmService } from './services/hsm.service';
 import { OptService } from './services/opt.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Buffer } from 'buffer';
+import { Utils } from './util/utils';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  
   constructor(
     private hsm: HsmService,
     private opt: OptService,
@@ -23,6 +25,9 @@ export class AppComponent {
     this.hsm.readAll().then(data => {
       console.log(data);
       this.hsmData = data;
+      this.hsmData.herstellerid = Utils.ebcdicToAscii(data.herstellerid);
+      this.hsmData.herstellerserialno = Utils.ebcdicToAscii(data.herstellerserialno);
+      this.hsmData.zkano = Utils.ebcdicToAscii(data.zkano);
     });
   }
 
