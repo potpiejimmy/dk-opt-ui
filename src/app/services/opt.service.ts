@@ -13,11 +13,15 @@ export class OptService extends BaseService {
             super(http, snackBar);
     }
 
+    preinit(): Promise<any> {
+        return this.get(environment.API_URL+"/opt/preinit");
+    }
+
     init(): Promise<any> {
         return this.get(environment.API_URL+"/opt/init");
     }
 
-    preinit(): Promise<any> {
-        return this.get(environment.API_URL+"/opt/preinit");
+    pers(): Promise<any> {
+        return this.get(environment.API_URL+"/opt/pers");
     }
 }

@@ -32,7 +32,6 @@ export class AppComponent {
       this.adminData = data;
       this.adminData.herstellerid = Utils.ebcdicToAscii(data.herstellerid);
       this.adminData.herstellerserialno = Utils.ebcdicToAscii(data.herstellerserialno);
-      this.adminData.zkano = Utils.ebcdicToAscii(data.zkano);
       return this.hsm.readKeystoreProperties();
     }).then(data => {
       this.keystoreData = data;
@@ -61,16 +60,16 @@ export class AppComponent {
     this.saveValue('ozp').then(() => this.showSnack("Der Onlinezeitpunkt wurde gesetzt."));
   }
 
-  optInit() {
-    this.optProcess(this.opt.init());
-  }
-
   optPreInit() {
     this.optProcess(this.opt.preinit());
   }
 
+  optInit() {
+    this.optProcess(this.opt.init());
+  }
+
   optPers() {
-    //this.optProcess(this.opt.init());
+    this.optProcess(this.opt.pers());
   }
 
   optProcess(optResult: Promise<any>) {
