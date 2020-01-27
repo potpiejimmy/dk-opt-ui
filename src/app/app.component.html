@@ -39,6 +39,22 @@
         </p>
         <mat-divider [inset]="true"></mat-divider>
         <p></p>
+        <mat-card-subtitle>Registrierung</mat-card-subtitle>
+        <div flexLayout="row" fxLayoutGap="1em">
+          <mat-form-field fxFlex="75%">
+            <mat-label>Art</mat-label>
+            <mat-select [(value)]="registrationType">
+              <mat-option value="new">Neu-Registrierung</mat-option>
+              <mat-option value="change">Änderungs-Regstrierung</mat-option>
+              <mat-option value="unreg">Abmeldung</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div fxFlex="25%">
+            <button mat-raised-button color="primary" (click)="optRegister()">Ausführen</button>
+          </div>
+        </div>
+        <mat-divider [inset]="true"></mat-divider>
+        <p></p>
         <mat-card-subtitle>Initialisierung</mat-card-subtitle>
         <key-presence keyname="K_INIT">/</key-presence>
         <p>
@@ -68,6 +84,10 @@
         <mat-form-field>
             <input matInput #inphserial placeholder="Hersteller-Seriennummer" [(ngModel)]="adminData.herstellerserialno" disabled="true">
             <mat-hint align="end">{{inphserial.value?.length || 0}}/10</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput #inphid placeholder="Betreiber-ID" [(ngModel)]="adminData.betreiberid" disabled="true">
+            <mat-hint align="end">{{inphid.value?.length || 0}}/6</mat-hint>
         </mat-form-field>
         <mat-form-field>
             <input matInput #inphzkano placeholder="ZKA-Nummer" [(ngModel)]="adminData.zkano" disabled="true">

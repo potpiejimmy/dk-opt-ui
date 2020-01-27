@@ -17,6 +17,10 @@ export class OptService extends BaseService {
         return this.get(environment.API_URL+"/opt/preinit");
     }
 
+    register(type: string): Promise<any> {
+        return this.get(environment.API_URL+"/opt/register?type="+type);
+    }
+
     init(): Promise<any> {
         return this.get(environment.API_URL+"/opt/init");
     }

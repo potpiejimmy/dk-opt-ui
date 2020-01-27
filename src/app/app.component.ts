@@ -23,6 +23,8 @@ export class AppComponent {
 
   processing: boolean = false;
 
+  registrationType: string = "new";
+
   ngOnInit() {
     this.updateAll();
   }
@@ -32,6 +34,7 @@ export class AppComponent {
       this.adminData = data;
       this.adminData.herstellerid = Utils.ebcdicToAscii(data.herstellerid);
       this.adminData.herstellerserialno = Utils.ebcdicToAscii(data.herstellerserialno);
+      this.adminData.betreiberid = Utils.ebcdicToAscii(data.betreiberid);
       return this.hsm.readKeystoreProperties();
     }).then(data => {
       this.keystoreData = data;
@@ -62,6 +65,10 @@ export class AppComponent {
 
   optPreInit() {
     this.optProcess(this.opt.preinit());
+  }
+
+  optRegister() {
+    this.optProcess(this.opt.register(this.registrationType));
   }
 
   optInit() {
