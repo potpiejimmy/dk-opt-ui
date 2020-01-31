@@ -67,6 +67,10 @@ export class AppComponent {
     this.optProcess(this.opt.preinit());
   }
 
+  optOutOfOrder() {
+    this.optProcess(this.opt.outoforder());
+  }
+
   optRegister() {
     this.optProcess(this.opt.register(this.registrationType));
   }

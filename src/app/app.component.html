@@ -67,6 +67,13 @@
         <p>
           <button mat-raised-button color="primary" (click)="optPers()" [disabled]="processing || !keystoreData.K_PERS">Personalisierung durchführen</button>
         </p>
+        <mat-divider [inset]="true"></mat-divider>
+        <p></p>
+        <mat-card-subtitle>Außerbetriebnahme</mat-card-subtitle>
+        <key-presence keyname="K_INIT">/</key-presence>
+        <p>
+          <button mat-raised-button color="primary" (click)="optOutOfOrder()" [disabled]="processing || !keystoreData.K_INIT">Außerbetriebnahme</button>
+        </p>
       </mat-card-content>
     </mat-card>
     
